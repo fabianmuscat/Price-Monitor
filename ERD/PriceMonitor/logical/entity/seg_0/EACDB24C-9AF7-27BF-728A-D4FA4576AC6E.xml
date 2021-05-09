@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EACDB24C-9AF7-27BF-728A-D4FA4576AC6E" name="Account">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:19:26 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="AccountID" id="8FC51B6C-7821-608B-AB70-9E78EF92DDFF">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:20:22 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Username" id="B997848B-F666-4DE8-961E-E180E9F0E010">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:19:43 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Password" id="AA06DAD9-4B31-F5A8-C271-7E657F6F6528">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:20:47 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Email" id="63E17ECC-2BFF-F5B3-2AC7-C46D91C76BBA">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 16:39:12 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="84CB2B0E-0E22-96E9-A06F-CEB5DAC019FB" name="Account PK">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:20:19 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8FC51B6C-7821-608B-AB70-9E78EF92DDFF</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="B7046431-F270-BE3B-51C8-06E5D11A9870" name="username_unique">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:21:20 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<newElementsIDs>B997848B-F666-4DE8-961E-E180E9F0E010</newElementsIDs>
+<usedAttributes>
+<attributeRef>B997848B-F666-4DE8-961E-E180E9F0E010</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="DE4197C0-614F-72D3-2596-A9F78E6C9E7B" name="email_unique">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-12 08:55:34 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<newElementsIDs>63E17ECC-2BFF-F5B3-2AC7-C46D91C76BBA</newElementsIDs>
+<usedAttributes>
+<attributeRef>63E17ECC-2BFF-F5B3-2AC7-C46D91C76BBA</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

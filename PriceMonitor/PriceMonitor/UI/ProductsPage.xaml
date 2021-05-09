@@ -1,0 +1,122 @@
+﻿<Window x:Name="window" x:Class="PriceMonitor.UI.ProductsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Products" Closed="ProductsPage_OnClosed" Loaded="ProductsPage_OnLoaded" Height="400" Width="950" ResizeMode="CanResize" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="{StaticResource App-Icon}">
+    
+    <ScrollViewer>
+        <Grid>
+            <StackPanel Orientation="Vertical" x:Name="stackPanel" Width="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Margin="10 10 0 0" Grid.ColumnSpan="2">
+                        <TextBlock>
+                            <Button HorizontalAlignment="Right" Padding="0" Background="Transparent" Foreground="Black" Width="25" BorderThickness="0" Height="25" Click="Arrow_Click">
+                                <materialDesign:PackIcon Kind="ArrowBack"  />
+                            </Button>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="0 10 0 0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                        <TextBlock Margin="0 0 0 8" Text="Products" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+                <Separator Style="{StaticResource MaterialDesignLightSeparator}" Margin="15 0 0 0" Background="LightGray"/>
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 10 0 20">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 0 150 0">
+                            <materialDesign:PackIcon Kind="Euro" VerticalAlignment="Bottom" Width="25" Height="25"></materialDesign:PackIcon>
+                            <TextBox VerticalAlignment="Bottom" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Min" Margin="0 0 6 0" Name="MinPriceTxtBox" TextChanged="PriceMin_Changed" HorizontalAlignment="Left" Width="50"></TextBox>
+
+                            <TextBlock Text="to" Margin="10 0" FontSize="18" FontWeight="Bold" VerticalAlignment="Bottom" />
+
+                            <materialDesign:PackIcon Kind="Euro" VerticalAlignment="Bottom" Width="25" Height="25"></materialDesign:PackIcon>
+                            <TextBox VerticalAlignment="Bottom" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Max" Margin="0 0 6 0" Name="MaxPriceTxtBox" TextChanged="PriceMax_Changed" HorizontalAlignment="Left" Width="50"></TextBox>
+
+                            <materialDesign:Chip VerticalAlignment="Bottom" Margin="6 0 0 0" Name="PriceFilterChip" IconBackground="{DynamicResource PrimaryHueDarkBrush}" Background="{DynamicResource PrimaryHueDarkBrush}" 
+                                                 Foreground="White" DeleteToolTip="Reset" Content="Filter Price" IsDeletable="True" Click="PriceFilter_OnClick" DeleteClick="ResetPrice_OnClick">
+                                <materialDesign:Chip.Icon>
+                                    <materialDesign:PackIcon Kind="Filter" />
+                                </materialDesign:Chip.Icon>
+                            </materialDesign:Chip>
+                        </StackPanel>
+                       
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <TextBox Margin="0 0 6 0" Name="FilterTxtBox" TextChanged="TextBoxBase_OnTextChanged" HorizontalAlignment="Left" Width="100"></TextBox>
+                                <materialDesign:Chip Margin="6 0 0 0" VerticalAlignment="Bottom" Name="FilterChip" IconBackground="{DynamicResource PrimaryHueDarkBrush}" Background="{DynamicResource PrimaryHueDarkBrush}" 
+                                                     Foreground="White" DeleteToolTip="Reset" Content="Filter Title" IsDeletable="True" Click="Filter_OnClick" DeleteClick="ResetTitle_OnClick">
+                                    <materialDesign:Chip.Icon>
+                                        <materialDesign:PackIcon Kind="Filter" />
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
+                            </StackPanel>
+
+                            <StackPanel Margin="20 0 0 0" Orientation="Vertical" VerticalAlignment="Center">
+                                <RadioButton Name="LikeRadio" GroupName="Filters" Content="Like" IsChecked="True"></RadioButton>
+                                <RadioButton Name="ExactlyLikeRadio" GroupName="Filters" Content="Exactly Like"></RadioButton>
+                                <RadioButton Name="StartingWithRadio" GroupName="Filters" Content="Starting With"></RadioButton>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <DataGrid MinColumnWidth="80" CanUserReorderColumns="False" SelectionMode="Single" SelectionUnit="FullRow" RowStyle="{StaticResource MaterialDesignDataGridRow}"
+                      AreRowDetailsFrozen="True" IsReadOnly="True" ColumnHeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}" 
+                      Margin="0 10 0 10" HorizontalAlignment="Center" AutoGenerateColumns="False" Name="products" Style="{StaticResource MaterialDesignDataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Title" Binding="{Binding Title}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Price (€)" Binding="{Binding Price}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Shipping (€)" Binding="{Binding Shipping}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Total (€)" Binding="{Binding Total}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Website" Binding="{Binding Website}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Category" Binding="{Binding Category}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <Border Padding="10" Background="{StaticResource MaterialDesignDarkBackground}">
+                                <StackPanel Orientation="Vertical">
+                                    <Button HorizontalAlignment="Right" Padding="0" Background="Transparent" BorderThickness="0" Height="20" Click="Click_HideRowDetails">
+                                        <materialDesign:PackIcon Kind="Close" HorizontalAlignment="Right"></materialDesign:PackIcon>
+                                    </Button>
+
+                                    <StackPanel Orientation="Horizontal" CanHorizontallyScroll="False">
+
+                                        <TextBlock Foreground="White" FontSize="14" Text="URL : "/>
+                                        <TextBlock Width="900">
+                                            <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="Hyperlink_OnRequestNavigate" Foreground="#3476FF">
+                                                <TextBlock TextTrimming="CharacterEllipsis" FontSize="14" Text="Click Here"></TextBlock>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                    <Button HorizontalAlignment="Left" Margin="0 10 0 0" Click="MonitorProduct_OnClick">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Monitor" Margin="0 0 3 0" />
+                                            <materialDesign:PackIcon Kind="AddShoppingCart" Margin="3 2 0 0" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

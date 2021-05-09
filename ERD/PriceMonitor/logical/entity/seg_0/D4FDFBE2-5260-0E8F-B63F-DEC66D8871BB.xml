@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D4FDFBE2-5260-0E8F-B63F-DEC66D8871BB" name="Website">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:22:19 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="WebsiteID" id="6A8B292C-EFDA-A7A6-358F-EE055E5088D3">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:22:49 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="944442B3-313D-3C00-7C61-41197EFEA116">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:23:51 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="URL" id="E452A913-E600-0D8A-73D2-F0ADE074F642">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:24:48 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>MAX</dataTypeSize>
+<ownDataTypeParameters>MAX,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="6779A84C-7704-65AB-8A58-FB7DF1AFC802" name="Website PK">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:23:35 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6A8B292C-EFDA-A7A6-358F-EE055E5088D3</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="965EE81F-6458-0C3E-0503-7E348E438D74" name="website_name_unique">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:26:01 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<newElementsIDs>944442B3-313D-3C00-7C61-41197EFEA116</newElementsIDs>
+<usedAttributes>
+<attributeRef>944442B3-313D-3C00-7C61-41197EFEA116</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="6D2CD655-7B53-F31E-5171-F797C985A23B" name="url_unique">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:27:15 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<newElementsIDs>E452A913-E600-0D8A-73D2-F0ADE074F642</newElementsIDs>
+<usedAttributes>
+<attributeRef>E452A913-E600-0D8A-73D2-F0ADE074F642</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

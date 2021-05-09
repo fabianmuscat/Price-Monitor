@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="log_activity_rel" directorySegmentName="seg_0" id="DAFED28F-B078-2054-2BB5-E2EFAD8DE555">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 16:11:06 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<sourcePk>4B034E39-C37C-86FF-01D3-6AFE20D4B5E3</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>1341CE34-BE0A-87E9-84CA-33E94F895F46</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>93A96E65-AF2C-FC64-A4BE-6B055E98CDFB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

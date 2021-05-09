@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b0321223f2294fab9cc2980d91ff49f1" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="PriceMonitorModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PriceMonitorModel.Account" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PriceMonitorModel.Activity" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PriceMonitorModel.Category" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PriceMonitorModel.Log" Width="1.5" PointX="3.625" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PriceMonitorModel.MonitorProduct" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PriceMonitorModel.Product" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PriceMonitorModel.Website" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="PriceMonitorModel.account_id_log_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PriceMonitorModel.account_id_mon_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PriceMonitorModel.activity_id_log_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PriceMonitorModel.category_id_pro_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PriceMonitorModel.product_id_mon_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PriceMonitorModel.web_id_mon_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PriceMonitorModel.website_id_pro_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PriceMonitorModel.web_id_pro_fk" />
+        <EntityTypeShape EntityType="PriceMonitorModel.ProductsObtainedView" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PriceMonitorModel.MonitoredProductsView" Width="1.5" PointX="5.125" PointY="0.75" />
+        <EntityTypeShape EntityType="PriceMonitorModel.Search" Width="1.5" PointX="8.375" PointY="4.875" />
+        <AssociationConnector Association="PriceMonitorModel.search_id_pro_fk" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

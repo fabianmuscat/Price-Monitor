@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="4A7B993C-E819-C6B7-E19C-589A1DCFC829" mainViewID="1D5E1C26-5CEC-A360-C2F5-378945B4093E">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:18:22 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
+</relationalModel>

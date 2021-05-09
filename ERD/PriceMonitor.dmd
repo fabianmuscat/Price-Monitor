@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="PriceMonitor" id="933C48CF-8C82-7B9A-8090-F45CC5ECC377" version="3.5">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:18:19 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>933C48CF-8C82-7B9A-8090-F45CC5ECC377</designId>
+</OSDM_Design>

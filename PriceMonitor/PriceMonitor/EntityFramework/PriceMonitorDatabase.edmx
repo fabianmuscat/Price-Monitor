@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PriceMonitorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WebsiteID" Type="int" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="SearchID" Type="int" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonitorProduct">
+          <Key>
+            <PropertyRef Name="MonitorID" />
+          </Key>
+          <Property Name="MonitorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="WebsiteID" Type="int" />
+          <Property Name="DateMonitored" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTitle" Type="varchar(max)" Nullable="false" />
+          <Property Name="Price" Type="numeric" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="Shipping" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="URL" Type="varchar(max)" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="SearchID" Type="int" />
+          <Property Name="WebsiteID" Type="int" />
+        </EntityType>
+        <EntityType Name="Search">
+          <Key>
+            <PropertyRef Name="SearchID" />
+          </Key>
+          <Property Name="SearchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SearchTerm" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Website">
+          <Key>
+            <PropertyRef Name="WebsiteID" />
+          </Key>
+          <Property Name="WebsiteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WebsiteName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PriceMonitor.dbo.MonitoredProductsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MonitoredProductsView">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Subtotal" />
+            <PropertyRef Name="Obtained From" />
+            <PropertyRef Name="Link" />
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="Product" Type="varchar(max)" Nullable="false" />
+          <Property Name="Subtotal" Type="numeric" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="Shipping" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="Obtained From" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Link" Type="varchar(max)" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Date Monitored" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PriceMonitor.dbo.ProductsObtainedView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductsObtainedView">
+          <Key>
+            <PropertyRef Name="Product Title" />
+            <PropertyRef Name="Subtotal" />
+            <PropertyRef Name="URL" />
+            <PropertyRef Name="Website" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="SearchTerm" />
+          </Key>
+          <Property Name="Product Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Subtotal" Type="numeric" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="Shipping" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="URL" Type="varchar(max)" Nullable="false" />
+          <Property Name="Website" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SearchTerm" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="account_id_log_fk">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_id_mon_fk">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MonitorProduct" Type="Self.MonitorProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="MonitorProduct">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="activity_id_log_fk">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_id_pro_fk">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="product_id_mon_fk">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="MonitorProduct" Type="Self.MonitorProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="MonitorProduct">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="search_id_pro_fk">
+          <End Role="Search" Type="Self.Search" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Search">
+              <PropertyRef Name="SearchID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SearchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="web_id_mon_fk">
+          <End Role="Website" Type="Self.Website" Multiplicity="0..1" />
+          <End Role="MonitorProduct" Type="Self.MonitorProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="WebsiteID" />
+            </Principal>
+            <Dependent Role="MonitorProduct">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="web_id_pro_fk">
+          <End Role="Website" Type="Self.Website" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="WebsiteID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="website_id_pro_fk">
+          <End Role="Website" Type="Self.Website" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="WebsiteID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PriceMonitorModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="project" store:Type="Tables" />
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="project" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="project" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="project" store:Type="Tables" />
+          <EntitySet Name="MonitorProduct" EntityType="Self.MonitorProduct" Schema="project" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="project" store:Type="Tables" />
+          <EntitySet Name="Search" EntityType="Self.Search" Schema="project" store:Type="Tables" />
+          <EntitySet Name="Website" EntityType="Self.Website" Schema="project" store:Type="Tables" />
+          <EntitySet Name="MonitoredProductsView" EntityType="Self.MonitoredProductsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MonitoredProductsView].[Product] AS [Product], 
+    [MonitoredProductsView].[Subtotal] AS [Subtotal], 
+    [MonitoredProductsView].[Shipping] AS [Shipping], 
+    [MonitoredProductsView].[Obtained From] AS [Obtained From], 
+    [MonitoredProductsView].[Link] AS [Link], 
+    [MonitoredProductsView].[Account] AS [Account], 
+    [MonitoredProductsView].[Date Monitored] AS [Date Monitored]
+    FROM [dbo].[MonitoredProductsView] AS [MonitoredProductsView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductsObtainedView" EntityType="Self.ProductsObtainedView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductsObtainedView].[Product Title] AS [Product Title], 
+    [ProductsObtainedView].[Subtotal] AS [Subtotal], 
+    [ProductsObtainedView].[Shipping] AS [Shipping], 
+    [ProductsObtainedView].[URL] AS [URL], 
+    [ProductsObtainedView].[Website] AS [Website], 
+    [ProductsObtainedView].[Category] AS [Category], 
+    [ProductsObtainedView].[SearchTerm] AS [SearchTerm]
+    FROM [dbo].[ProductsObtainedView] AS [ProductsObtainedView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="account_id_log_fk" Association="Self.account_id_log_fk">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="account_id_mon_fk" Association="Self.account_id_mon_fk">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="MonitorProduct" EntitySet="MonitorProduct" />
+          </AssociationSet>
+          <AssociationSet Name="activity_id_log_fk" Association="Self.activity_id_log_fk">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="category_id_pro_fk" Association="Self.category_id_pro_fk">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="product_id_mon_fk" Association="Self.product_id_mon_fk">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="MonitorProduct" EntitySet="MonitorProduct" />
+          </AssociationSet>
+          <AssociationSet Name="search_id_pro_fk" Association="Self.search_id_pro_fk">
+            <End Role="Search" EntitySet="Search" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="web_id_mon_fk" Association="Self.web_id_mon_fk">
+            <End Role="Website" EntitySet="Website" />
+            <End Role="MonitorProduct" EntitySet="MonitorProduct" />
+          </AssociationSet>
+          <AssociationSet Name="web_id_pro_fk" Association="Self.web_id_pro_fk">
+            <End Role="Website" EntitySet="Website" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="website_id_pro_fk" Association="Self.website_id_pro_fk">
+            <End Role="Website" EntitySet="Website" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PriceMonitorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Logs" Relationship="Self.account_id_log_fk" FromRole="Account" ToRole="Log" />
+          <NavigationProperty Name="MonitorProducts" Relationship="Self.account_id_mon_fk" FromRole="Account" ToRole="MonitorProduct" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Logs" Relationship="Self.activity_id_log_fk" FromRole="Activity" ToRole="Log" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.category_id_pro_fk" FromRole="Category" ToRole="Product" />
+          <Property Name="WebsiteID" Type="Int32" />
+          <NavigationProperty Name="Website" Relationship="PriceMonitorModel.web_id_pro_fk" FromRole="Category" ToRole="Website" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="Self.account_id_log_fk" FromRole="Log" ToRole="Account" />
+          <NavigationProperty Name="Activity" Relationship="Self.activity_id_log_fk" FromRole="Log" ToRole="Activity" />
+          <Property Name="SearchID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MonitorProduct">
+          <Key>
+            <PropertyRef Name="MonitorID" />
+          </Key>
+          <Property Name="MonitorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="WebsiteID" Type="Int32" />
+          <Property Name="DateMonitored" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="Self.account_id_mon_fk" FromRole="MonitorProduct" ToRole="Account" />
+          <NavigationProperty Name="Product" Relationship="Self.product_id_mon_fk" FromRole="MonitorProduct" ToRole="Product" />
+          <NavigationProperty Name="Website" Relationship="Self.web_id_mon_fk" FromRole="MonitorProduct" ToRole="Website" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="Shipping" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="SearchID" Type="Int32" />
+          <Property Name="WebsiteID" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.category_id_pro_fk" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="MonitorProducts" Relationship="Self.product_id_mon_fk" FromRole="Product" ToRole="MonitorProduct" />
+          <NavigationProperty Name="Website" Relationship="Self.website_id_pro_fk" FromRole="Product" ToRole="Website" />
+          <NavigationProperty Name="Search" Relationship="PriceMonitorModel.search_id_pro_fk" FromRole="Product" ToRole="Search" />
+        </EntityType>
+        <EntityType Name="Website">
+          <Key>
+            <PropertyRef Name="WebsiteID" />
+          </Key>
+          <Property Name="WebsiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WebsiteName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MonitorProducts" Relationship="Self.web_id_mon_fk" FromRole="Website" ToRole="MonitorProduct" />
+          <NavigationProperty Name="Products" Relationship="Self.website_id_pro_fk" FromRole="Website" ToRole="Product" />
+          <NavigationProperty Name="Categories" Relationship="PriceMonitorModel.web_id_pro_fk" FromRole="Website" ToRole="Category" />
+        </EntityType>
+        <Association Name="account_id_log_fk">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_id_mon_fk">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MonitorProduct" Type="Self.MonitorProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="MonitorProduct">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="activity_id_log_fk">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_id_pro_fk">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="product_id_mon_fk">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="MonitorProduct" Type="Self.MonitorProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="MonitorProduct">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="web_id_mon_fk">
+          <End Role="Website" Type="Self.Website" Multiplicity="0..1" />
+          <End Role="MonitorProduct" Type="Self.MonitorProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="WebsiteID" />
+            </Principal>
+            <Dependent Role="MonitorProduct">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="website_id_pro_fk">
+          <End Role="Website" Type="Self.Website" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="WebsiteID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PriceMonitorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Activities" EntityType="Self.Activity" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="MonitorProducts" EntityType="Self.MonitorProduct" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Websites" EntityType="Self.Website" />
+          <AssociationSet Name="account_id_log_fk" Association="Self.account_id_log_fk">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="account_id_mon_fk" Association="Self.account_id_mon_fk">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="MonitorProduct" EntitySet="MonitorProducts" />
+          </AssociationSet>
+          <AssociationSet Name="activity_id_log_fk" Association="Self.activity_id_log_fk">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="category_id_pro_fk" Association="Self.category_id_pro_fk">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="product_id_mon_fk" Association="Self.product_id_mon_fk">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="MonitorProduct" EntitySet="MonitorProducts" />
+          </AssociationSet>
+          <AssociationSet Name="web_id_mon_fk" Association="Self.web_id_mon_fk">
+            <End Role="Website" EntitySet="Websites" />
+            <End Role="MonitorProduct" EntitySet="MonitorProducts" />
+          </AssociationSet>
+          <AssociationSet Name="website_id_pro_fk" Association="Self.website_id_pro_fk">
+            <End Role="Website" EntitySet="Websites" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="web_id_pro_fk" Association="PriceMonitorModel.web_id_pro_fk">
+            <End Role="Website" EntitySet="Websites" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <EntitySet Name="ProductsObtainedViews" EntityType="PriceMonitorModel.ProductsObtainedView" />
+          <EntitySet Name="MonitoredProductsViews" EntityType="PriceMonitorModel.MonitoredProductsView" />
+          <EntitySet Name="Searches" EntityType="PriceMonitorModel.Search" />
+          <AssociationSet Name="search_id_pro_fk" Association="PriceMonitorModel.search_id_pro_fk">
+            <End Role="Search" EntitySet="Searches" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="web_id_pro_fk">
+          <End Type="PriceMonitorModel.Website" Role="Website" Multiplicity="0..1" />
+          <End Type="PriceMonitorModel.Category" Role="Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="WebsiteID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductsObtainedView">
+          <Key>
+            <PropertyRef Name="Product_Title" />
+            <PropertyRef Name="Subtotal" />
+            <PropertyRef Name="URL" />
+            <PropertyRef Name="Website" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="SearchTerm" />
+          </Key>
+          <Property Name="Product_Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subtotal" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="Shipping" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SearchTerm" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MonitoredProductsView">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Subtotal" />
+            <PropertyRef Name="Obtained_From" />
+            <PropertyRef Name="Link" />
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="Product" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subtotal" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="Shipping" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Obtained_From" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Monitored" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Search">
+          <Key>
+            <PropertyRef Name="SearchID" />
+          </Key>
+          <Property Name="SearchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SearchTerm" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="PriceMonitorModel.search_id_pro_fk" FromRole="Search" ToRole="Product" />
+        </EntityType>
+        <Association Name="search_id_pro_fk">
+          <End Type="PriceMonitorModel.Search" Role="Search" Multiplicity="0..1" />
+          <End Type="PriceMonitorModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Search">
+              <PropertyRef Name="SearchID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SearchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PriceMonitorModelStoreContainer" CdmEntityContainer="PriceMonitorEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PriceMonitorModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="PriceMonitorModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="PriceMonitorModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="PriceMonitorModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="PriceMonitorModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonitorProducts">
+            <EntityTypeMapping TypeName="PriceMonitorModel.MonitorProduct">
+              <MappingFragment StoreEntitySet="MonitorProduct">
+                <ScalarProperty Name="MonitorID" ColumnName="MonitorID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
+                <ScalarProperty Name="DateMonitored" ColumnName="DateMonitored" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="PriceMonitorModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+                <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Websites">
+            <EntityTypeMapping TypeName="PriceMonitorModel.Website">
+              <MappingFragment StoreEntitySet="Website">
+                <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
+                <ScalarProperty Name="WebsiteName" ColumnName="WebsiteName" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsObtainedViews">
+            <EntityTypeMapping TypeName="PriceMonitorModel.ProductsObtainedView">
+              <MappingFragment StoreEntitySet="ProductsObtainedView">
+                <ScalarProperty Name="SearchTerm" ColumnName="SearchTerm" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="Product_Title" ColumnName="Product Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonitoredProductsViews">
+            <EntityTypeMapping TypeName="PriceMonitorModel.MonitoredProductsView">
+              <MappingFragment StoreEntitySet="MonitoredProductsView">
+                <ScalarProperty Name="Date_Monitored" ColumnName="Date Monitored" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Obtained_From" ColumnName="Obtained From" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Searches">
+            <EntityTypeMapping TypeName="PriceMonitorModel.Search">
+              <MappingFragment StoreEntitySet="Search">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SearchTerm" ColumnName="SearchTerm" />
+                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

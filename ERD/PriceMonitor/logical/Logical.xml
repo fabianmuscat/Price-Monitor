@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="E6D6FECC-2BC0-FCC5-0EA1-8AEC2854F4C3" mainViewID="E025EDDB-287E-D9A7-10FC-0A7FC9978139">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:18:19 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

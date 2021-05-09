@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="F62EC14A-F921-B9AD-313F-AC28EBD4FC98">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 13:18:19 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>

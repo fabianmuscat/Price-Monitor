@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="93A96E65-AF2C-FC64-A4BE-6B055E98CDFB" name="Log">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:14:32 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="LogID" id="9FCAC5FE-C026-AE72-A6B3-A2DD7C8C553F">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:15:25 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="AccountID" id="1FF3D2E3-0E1F-3BD0-E47B-3989DB41F123">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 16:59:08 UTC</createdTime>
+<generatorID>DAD7891C-15A4-989C-A424-953EBAB9DD23</generatorID>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>8FC51B6C-7821-608B-AB70-9E78EF92DDFF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ActivityID" id="B4C36974-F88A-45B0-4264-5BC69BFFD449">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 16:11:06 UTC</createdTime>
+<generatorID>DAFED28F-B078-2054-2BB5-E2EFAD8DE555</generatorID>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<referedAttribute>0C4E2BFA-4C50-E13F-AA1C-A405B73B9503</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Time" id="2A2C5885-EA96-3D6C-542B-C37AA28F652A">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:16:27 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SearchID" id="F98093CC-32AF-07C4-B08B-68C52314A47E">
+<createdBy>fabia</createdBy>
+<createdTime>2020-05-19 10:06:24 UTC</createdTime>
+<generatorID>D0DBF620-5ACE-A206-A370-3002565C7174</generatorID>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<referedAttribute>6E7AE3CA-ABC1-5D55-FBD7-27B657C33484</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="60D981C6-352A-62C8-1DC6-E7D2DAA0B09B" name="Log PK">
+<createdBy>fabia</createdBy>
+<createdTime>2020-04-01 14:16:25 UTC</createdTime>
+<ownerDesignName>PriceMonitor</ownerDesignName>
+<engineerTo>
+<item key="4A7B993C-E819-C6B7-E19C-589A1DCFC829" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>9FCAC5FE-C026-AE72-A6B3-A2DD7C8C553F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

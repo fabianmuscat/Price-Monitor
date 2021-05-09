@@ -1,0 +1,103 @@
+﻿<Window x:Class="PriceMonitor.UI.StartupPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Price Monitor" Loaded="StartupPage_OnLoaded" Closed="StartupPage_OnClosed" WindowStyle="ToolWindow" Icon="{StaticResource App-Icon}" ResizeMode="NoResize" WindowState="Maximized"  Height="400" Width="750">
+
+    <Grid>
+        <dragablz:TabablzControl Style="{StaticResource MaterialDesignAlternateTabablzControlStyle}" Name="TabablzControl" SelectionChanged="Selector_OnSelectionChanged">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+
+            <TabItem IsEnabled="False" Name="AccountTab" Header="Account">
+                <ScrollViewer>
+                    <Border Background="{StaticResource MaterialDesignDarkBackground}" Padding="10" VerticalAlignment="Top">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Width="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
+                                <TextBlock Foreground="White" FontSize="18" Text="Welcome " />
+                                <TextBlock Foreground="White" FontSize="18" FontWeight="Bold" Name="Username" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0 10 0 0"  Orientation="Horizontal">
+                                <Button Click="ButtonBase_OnClick" Padding="10 5 10 5" FontSize="12" Content="Logout" />
+                                <Button Click="LogsShow_OnClick" Name="ShowLogs" Margin="15 0 0 0" HorizontalAlignment="Right" Content="View Activity Log" />
+                                <Button Click="LogsHide_OnClick" Name="HideLogs" Visibility="Collapsed" Margin="15 0 0 0" HorizontalAlignment="Right" Content="Hide Activity Log" />
+                            </StackPanel>
+
+                            <StackPanel Visibility="Collapsed" Name="LogsPanel" Orientation="Vertical" Margin="0 10 0 0">
+                                <StackPanel Orientation="Horizontal" Margin="10 5">
+                                    <TextBlock Foreground="Beige" FontSize="16" FontWeight="Bold" Text="Activity Log (Past Hour) - " />
+                                    <TextBlock Foreground="Beige" FontSize="16" FontWeight="Bold" Name="Date"></TextBlock>
+                                </StackPanel>
+                                <TextBlock Foreground="Beige" FontSize="14" Padding="10" Name="Logs" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Name="ProductsTab" Header="My Products">
+                <StackPanel>
+                    <StackPanel Name="NoItemsMessage" Visibility="Collapsed" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Nothing to Show" Foreground="Black" HorizontalAlignment="Center" Padding="20" FontSize="30"></TextBlock>
+                        <TextBlock Text="You are not monitoring any products" HorizontalAlignment="Center" Foreground="Black"  FontSize="20"></TextBlock>
+
+                        <materialDesign:PackIcon Kind="MonitorOff" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25" Width="100" Height="100"></materialDesign:PackIcon>
+                    </StackPanel>
+
+                     <DataGrid CanUserReorderColumns="False" MinColumnWidth="80" SelectionMode="Single" SelectionUnit="FullRow" 
+                               RowStyle="{StaticResource MaterialDesignDataGridRow}" AreRowDetailsFrozen="True" IsReadOnly="True"  
+                               ColumnHeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}" Margin="0 10 0 10" HorizontalAlignment="Center"  
+                               AutoGenerateColumns="False" Name="myProducts" Style="{StaticResource MaterialDesignDataGrid}"> 
+                         <DataGrid.Columns> 
+                             <DataGridTextColumn Header="Title" Binding="{Binding Title}"> 
+                                 <DataGridTextColumn.ElementStyle> 
+                                     <Style> 
+                                         <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter> 
+                                     </Style> 
+                                 </DataGridTextColumn.ElementStyle> 
+                             </DataGridTextColumn> 
+                     
+                             <DataGridTextColumn Header="Price (€)" Binding="{Binding Subtotal}"></DataGridTextColumn> 
+                             <DataGridTextColumn Header="Shipping (€)" Binding="{Binding Shipping}"></DataGridTextColumn> 
+                             <DataGridTextColumn Header="Total (€)" Binding="{Binding Total}"></DataGridTextColumn> 
+                             <DataGridTextColumn Header="Website" Binding="{Binding Website}"></DataGridTextColumn> 
+                             <DataGridTextColumn Header="Date Added" Binding="{Binding DateAdded}"></DataGridTextColumn> 
+                         </DataGrid.Columns> 
+                     
+                         <DataGrid.RowDetailsTemplate> 
+                             <DataTemplate> 
+                                 <Border Padding="10" Background="{StaticResource MaterialDesignDarkBackground}"> 
+                                     <StackPanel Orientation="Vertical"> 
+                                         <StackPanel Orientation="Horizontal" CanHorizontallyScroll="False"> 
+                                             <TextBlock Foreground="White" FontSize="14" Text="URL: "/> 
+                                             <TextBlock  TextDecorations="Underline" Cursor="Hand" > 
+                                             <Hyperlink NavigateUri="{Binding Url}" Foreground="#3476FF"> 
+                                                 <TextBlock Width="900" TextTrimming="CharacterEllipsis" FontSize="14" Text="{Binding Url}"></TextBlock> 
+                                             </Hyperlink> 
+                                         </TextBlock> 
+                                         </StackPanel> 
+                     
+                                         <Button HorizontalAlignment="Left" Margin="0 10 0 0" Click="RemoveMonitor_Click"> 
+                                             <StackPanel Orientation="Horizontal"> 
+                                                 <TextBlock Text="Remove" Margin="0 0 3 0" /> 
+                                                 <materialDesign:PackIcon Kind="RemoveShoppingCart" Margin="3 2 0 0" /> 
+                                             </StackPanel> 
+                                         </Button> 
+                                     </StackPanel> 
+                                 </Border> 
+                             </DataTemplate> 
+                         </DataGrid.RowDetailsTemplate> 
+                     </DataGrid>  
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Name="SearchTab" Header="Search"></TabItem>
+        </dragablz:TabablzControl>
+    </Grid>
+</Window>

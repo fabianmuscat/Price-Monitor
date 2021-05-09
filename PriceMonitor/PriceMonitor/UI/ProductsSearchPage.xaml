@@ -1,0 +1,57 @@
+﻿<Window x:Class="PriceMonitor.UI.ProductsSearchPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Search Form" Height="400" Width="400" Background="#FF134D96" ResizeMode="NoResize" Icon="{StaticResource App-Icon}" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        Loaded="ProductsSearchPage_OnLoaded">
+
+    <materialDesign:Card Width="350" VerticalAlignment="Center" Padding="15" Name="Card">
+        <StackPanel>
+            <TextBlock Margin="10 10 3 5" FontSize="18" HorizontalAlignment="Left" Text="Search" />
+
+            <Separator Style="{StaticResource MaterialDesignLightSeparator}" Background="LightGray"/>
+
+            <TextBox Name="SearchBox" TextChanged="SearchBox_OnTextChanged" materialDesign:HintAssist.Hint="e.g. camera"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+
+            <ComboBox Name="CategoryComboBox" materialDesign:HintAssist.Hint="Category" Margin="0 10 0 0">
+                <ComboBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="ResetMenuItem" Header="Reset" Click="MenuItem_OnClick"></MenuItem>
+                    </ContextMenu>
+                </ComboBox.ContextMenu>
+            </ComboBox>
+
+            <Grid Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Tag="https://www.amazon.co.uk/" Name="Amazon" Content="Amazon" />
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Tag="https://www.ebay.co.uk/" Name="Ebay" Content="Ebay" />
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Tag="https://www.gearbest.com/" Name="GearBest" Content="GearBest" />
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Tag="https://www.walmart.com/" Name="Walmart"  Content="Walmart" />
+
+                    <CheckBox Margin="0 10 0 0" Name="AllWebsitesCheckBox" Checked="AllWebsites_OnChecked" Unchecked="AllWebsites_OnChecked" Content="Select All"  FontWeight="Bold"></CheckBox>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Name="AtoZ" Tag="https://www.atoz.com.mt/" Content="AtoZ" />
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Name="NewEgg" Tag="https://www.newegg.com/" Content="New Egg" />
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Name="Microcenter" Tag="https://www.microcenter.com/" Content="Microcenter" />
+                    <CheckBox Checked="Website_OnChecked" Unchecked="Website_OnUnchecked" Name="Scan" Tag="https://www.scanmalta.com/shop/" Content="Scan" />
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="SearchButton" Margin="0 20 0 0" Content="Search" Click="Button_Click" />
+            </StackPanel>
+        </StackPanel>
+    </materialDesign:Card>
+</Window>
